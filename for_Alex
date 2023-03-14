@@ -1,0 +1,49 @@
+class InfoMessage:
+    """Информационное сообщение о тренировке."""
+
+    def __init__(self,
+                 name,
+                 example):
+        self.name = name
+        self.example = example
+    def get_message(self):
+        return (f'Решение {self.example}')
+
+
+class Training:
+    """Базовый класс тренировки."""
+
+    def __init__(self,
+                 name: str):
+        self.name = name
+
+    def solution(self) -> float:
+        """Получить дистанцию в км."""
+        example = 5
+        return example
+
+    def show_training_info(self) -> InfoMessage:
+        """Вернуть информационное сообщение о выполненной тренировке."""
+        message = InfoMessage(self.name, Training.solution(self))
+        return InfoMessage.get_message(message)
+
+
+class Running(Training):
+    """Тренировка: бег."""
+
+    def __init__(self, 
+                 name: str,
+                 apple: float):
+        super().__init__(name)
+        self.apple = apple
+
+    def solution(self) -> float:
+        example = 5 + self.apple
+        return example
+   
+    def show_training_info(self) -> InfoMessage:
+        return super().show_training_info()
+
+run = Running('run', 5)
+
+print(Running.show_training_info(run))
